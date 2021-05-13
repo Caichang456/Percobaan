@@ -11,7 +11,6 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
-    var isRemember=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,12 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         sharedPreferences=getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         isRemember=sharedPreferences.getBoolean("CHECKBOX",false)
-
-        if(isRemember){
-            val intent=Intent(this,Aktivitas_1::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         var Login:Button=findViewById(R.id.btnLogin)
         var User:EditText=findViewById(R.id.etUserName)
