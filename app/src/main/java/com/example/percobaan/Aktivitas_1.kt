@@ -13,12 +13,12 @@ class Aktivitas_1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aktivitas_1)
 
-        sharedPreferences=getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        preferences=getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
         val Logout: Button =findViewById(R.id.btnLogout)
 
         Logout.setOnClickListener {
-            val editor:SharedPreferences.Editor=sharedPreferences.edit()
+            val editor:SharedPreferences.Editor=preferences.edit()
             editor.putBoolean("isLogin",false)
             editor.apply()
         }
