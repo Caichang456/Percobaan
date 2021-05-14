@@ -17,27 +17,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         sharedPreferences=getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
-        isRemember=sharedPreferences.getBoolean("CHECKBOX",false)
 
         var Login:Button=findViewById(R.id.btnLogin)
         var User:EditText=findViewById(R.id.etUserName)
         var Pass:EditText=findViewById(R.id.etPassWord)
 
-        Login.setOnClickListener {
-            if(User.text.toString()=="admin"&&Pass.text.toString()=="12345"){
-                val editor:SharedPreferences.Editor=sharedPreferences.edit()
-                editor.putString("Teks1",User.text.toString())
-                editor.putString("Teks2",Pass.text.toString())
-                editor.apply()
+        if(sharedPreferences.getBoolean("isLogin",true)){
+            val intent=Intent(this,Aktivitas_1::class.java)
+            startActivity(intent)
+            finish()
+        }
+        else{
+            Login.setOnClickListener {
+                if(User.text.toString()=="admin"&&Pass.text.toString()=="12345"){
+                    val editor:SharedPreferences.Editor=sharedPreferences.edit()
+                    editor.putBoolean("isLogin",true)
+                    editor.apply()
 
-                val intent=Intent(this,Aktivitas_1::class.java)
-                startActivity(intent)
-                finish()
-            }
-            else{
-                val toast=Toast.makeText(applicationContext,"User atau Password salah",Toast.LENGTH_SHORT)
-                toast.show()
+                    val intent=Intent(this,Aktivitas_1::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else{
+                    val toast=Toast.makeText(applicationContext,"User atau Password salah",Toast.LENGTH_SHORT)
+                    toast.show()
+                }
             }
         }
+
     }
 }
